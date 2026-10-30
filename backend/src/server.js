@@ -34,10 +34,10 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Mount Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/mysteries', mysteryRoutes);
-app.use('/api/bot', chatbotRoutes);
+// Mount Routes (supports both /api and /api/api for robust client compatibility)
+app.use(['/api/auth', '/api/api/auth'], authRoutes);
+app.use(['/api/mysteries', '/api/api/mysteries'], mysteryRoutes);
+app.use(['/api/bot', '/api/api/bot'], chatbotRoutes);
 
 // 404 Handler
 app.use((req, res) => {

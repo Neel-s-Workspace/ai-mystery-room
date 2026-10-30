@@ -47,8 +47,9 @@ export const AuthProvider = ({ children }) => {
     const handlePageHide = () => {
       const activeToken = sessionStorage.getItem('detective_token');
       if (activeToken && navigator.sendBeacon) {
-        const apiBase = import.meta.env.VITE_API_URL 
-          ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/api` 
+        const rawUrl = (import.meta.env.VITE_API_URL || '').trim().replace(/\/+$/, '');
+        const apiBase = rawUrl
+          ? (rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`)
           : '/api';
         const beaconUrl = `${apiBase}/auth/session-beacon?token=${encodeURIComponent(activeToken)}`;
         navigator.sendBeacon(beaconUrl);
