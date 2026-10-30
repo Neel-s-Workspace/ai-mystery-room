@@ -1,0 +1,23 @@
+{
+  "name": "ai-mystery-room-backend",
+  "version": "1.0.0",
+  "description": "Backend API for AI Mystery Room with Google Gemini and MERN Stack",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": ["ai", "gemini", "mystery", "mern", "detective"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^2.32.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.1"
+  }
+}

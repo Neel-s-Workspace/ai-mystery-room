@@ -1,0 +1,23 @@
+import express from 'express';
+import { 
+  register, 
+  login, 
+  getMe, 
+  getScoreHistory, 
+  dismissWelcome, 
+  logout, 
+  sessionBeacon 
+} from '../controllers/authController.js';
+import { requireAuth } from '../middleware/auth.js';
+
+const router = express.Router();
+
+router.post('/register', register);
+router.post('/login', login);
+router.post('/logout', requireAuth, logout);
+router.post('/session-beacon', sessionBeacon);
+router.post('/dismiss-welcome', requireAuth, dismissWelcome);
+router.get('/me', requireAuth, getMe);
+router.get('/score-history', requireAuth, getScoreHistory);
+
+export default router;
