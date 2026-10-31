@@ -18,11 +18,22 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: '*',
+    origin: true, // Dynamically reflects request origin (e.g. Vercel), allowing withCredentials
     credentials: true,
   })
 );
 app.use(express.json({ limit: '5mb' }));
+
+// Root Service Info Route
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ONLINE',
+    system: 'AI Mystery Room Forensic Backend API',
+    message: 'Backend API is running. Launch the game from your frontend deployment!',
+    frontendUrl: 'https://ai-mystery-room-nu-three.vercel.app',
+    healthCheck: '/api/health',
+  });
+});
 
 // Health Check
 app.get('/api/health', (req, res) => {
